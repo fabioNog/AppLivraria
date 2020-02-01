@@ -17,10 +17,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
-import Home from "./components/index"
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardHeader
+} from '@material-ui/core/'
 
+
+import CriarLivros from "./CriarLivros"
 
 const drawerWidth = 240;
 
@@ -104,8 +111,9 @@ export default function PersistentDrawerRight() {
         })}
       >
         <Toolbar>
+
           <Typography variant="h6" noWrap className={classes.title}>
-            <Link to="/"> Livraria</Link>
+           <Link to="/"> Livraria</Link>
           </Typography>
           <IconButton
             color="inherit"
@@ -124,8 +132,26 @@ export default function PersistentDrawerRight() {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Home/>
 
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+        >
+          {['criarlivros', 'editarlivros', 'deletarlivros', 'listarlivros'].map(text => (
+            <Grid item xs={12} sm={6} md={3} key={text}>
+              <Link to={text}>
+                <Card>
+                  <CardHeader
+                    title={text}
+                  />
+                </Card>
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
       </main>
       <Drawer
         className={classes.drawer}
@@ -145,10 +171,10 @@ export default function PersistentDrawerRight() {
         <List>
           {['livros', 'autores', 'editoras'].map((text, index) => (
             <Link to={text}>
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
             </Link>
           ))}
         </List>
