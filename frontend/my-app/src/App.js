@@ -123,8 +123,8 @@ export default function PersistentDrawerRight() {
       >
         <div className={classes.drawerHeader} />
         <Typography paragraph>
-          Olá, seja bem vindo ao software Livraria SOITIC, neste programa você poderá criar, editar, deletar e visualizar Livros <Divider/> 
-          Também será possivel cadastrar seus autores e as editoras. No canto superior a direita encontra-se o menu do painel de controle.
+         <h2>Olá, seja bem vindo ao software Livraria SOITIC</h2>Neste programa você poderá <h4>criar</h4> <h4>editar</h4> <h4>deletar</h4> <h4>visualizar</h4> <br/><br/><Divider/> <br/>
+          Também será possivel cadastrar seus autores e suas devidas editoras, Fique a vontade. <br/>No canto superior a direita encontra-se o menu do painel de controle.
         </Typography>
 
       </main>
@@ -144,11 +144,13 @@ export default function PersistentDrawerRight() {
         </div>
         <Divider />
         <List>
-          {['Livros', 'Autores', 'Editoras'].map((text, index) => (
+          {['livros', 'autores', 'editoras'].map((text, index) => (
+            <Link to={text}>
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>
