@@ -43,7 +43,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(6),
+        marginTop: theme.spacing(1),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -54,7 +54,12 @@ const useStyles = makeStyles(theme => ({
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2),
+    },
+    formMulti: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(2),
+        border: '5px'
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -145,8 +150,13 @@ const currencies = [
 export default function SignIn() {
     const classes = useStyles();
     const theme = useTheme();
+    const [value, setValue] = React.useState('');
     const [open, setOpen] = React.useState(false);
     const [currency, setCurrency] = React.useState('EUR');
+
+    const handleChangeMulti = event => {
+        setValue(event.target.value);
+    };
 
     const handleChange = event => {
         setCurrency(event.target.value);
@@ -161,8 +171,10 @@ export default function SignIn() {
     };
 
 
-    //Data Piker
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const handleClick = () => {
+        
+    }
+    
 
     return (
         <div className={classes.root}>
@@ -198,7 +210,7 @@ export default function SignIn() {
             <CssBaseline />
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
-                    Cadastre seu livro:
+                    Cadastre seu livro
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
@@ -206,34 +218,24 @@ export default function SignIn() {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Nome do Filme"
+                        id="nome"
+                        label="Nome do Livro"
                         name="email"
-                        autoComplete="email"
+                        autoComplete="nome"
                         autoFocus
                     />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
+                    <form className={classes.container} noValidate>
+                        <TextField
+                            id="datetime-local"
+                            label="Data de Criação"
+                            type="datetime"
+                            defaultValue="2017-05-24"
+                            className={classes.form}
+                            InputLabelProps={{
+                            shrink: true,
+                            }}                            
+                        />
+                    </form>
                     <TextField
                         id="standard-select-currency"
                         select
@@ -252,16 +254,11 @@ export default function SignIn() {
                     </TextField>
 
                     <TextField
-                        variant="outlined"
-                        margin="normal"
-                        width="100%"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
+                        id="standard-multiline-static"
+                        label="Sinopse"
+                        multiline
+                        rows="2"
+                        className={classes.formMulti}
                     />
                     <Button
                         type="submit"
@@ -269,6 +266,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={handleClick}
                     >
                         Cadastrar
                     </Button>
