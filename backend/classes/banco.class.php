@@ -23,7 +23,8 @@
 
         public function conect(){
             
-            $this->conection = mysqli_connect($this->server,$this->user,$this->password,$this->database_name,TRUE) or die("erro");
+            $this->conection = mysqli_connect($this->server,$this->user,$this->password,$this->database_name,TRUE) 
+            or die($this->handle_erro(__FILE__,__FUNCTION__,mysqli_errno($this->conection),mysqli_error($this->conection),TRUE));
             mysqli_query($this->conection,"SET NAMES 'utf8");
             mysqli_query($this->conection,"SET character_set_connection=utf8");
             mysqli_query($this->conection,"SET character_set_client=utf8");
