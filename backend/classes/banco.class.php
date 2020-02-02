@@ -29,8 +29,47 @@
             mysqli_query($this->conection,"SET character_set_connection=utf8");
             mysqli_query($this->conection,"SET character_set_client=utf8");
             mysqli_query($this->conection,"SET character_set_results=utf8");
-            echo("Metodo conectar foi chamado");
         }//Classe ao qual conectara ao banco
+
+        //Construindo a função SQL Insert
+        public function insert($object){
+            $sql = "INSERT INTO ".$object->table." (";
+            for($i=0;$i<count($object->fields_value); $i++) :
+                $sql .= key($object->fields_value);
+                if($i < (count($object->fields_value) - 1)):
+                    $sql .= ",";
+                else:
+                    $sql .= ")";
+                endif;
+                next($object->fields_value);
+            endfor;
+            reset($object->fields_value);
+            $sql .= "VALUES (";
+            for($i=0;$i<count($object->fields_value); $i++) :
+                //Verificando primeiro se o valor é numerico ou string
+                $sql .= is_numeric($object->fields_value[key($object->fields_value)]) ? 
+                $object->fields_value[key($object->fields_value)] :
+                "'".$object->fields_value[key($object->fields_value)]."'";
+                if($i < (count($object->fields_value) - 1)):
+                    $sql .= ",";
+                else:
+                    $sql .= ")";
+                endif;
+                next($object->fields_value);
+            endfor;
+            echo $sql;
+
+            return $this->executeSQL($sql);
+        }//Inserir
+        
+        //Rotina de Execução dos SQLs
+        public function executeSQL($sql=NULL){
+            if($sql!=NULL):
+                $query = mysqli_query($this->conection,$sql) or 
+                $this->handle_erro(__FILE__,__FUNCTION__);
+            else:
+            endif;
+        }
 
         //Rotina para tratamento de erros
         public function handle_erro($file=NULL,$routine=NULL,$number_erro=NULL,$msg_erro=NULL,$generation_except=FALSE){
