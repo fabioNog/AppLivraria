@@ -1,15 +1,9 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles,useTheme  } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -30,154 +24,161 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-//Data Picker
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-    paper: {
-        marginTop: theme.spacing(1),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(2),
-    },
-    formMulti: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(2),
-        border: '5px'
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-    root: {
-        display: 'flex',
-      },
-      appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-      },
-      appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginRight: drawerWidth,
-      },
-      title: {
-        flexGrow: 1,
-      },
-      hide: {
-        display: 'none',
-      },
-      drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
-      drawerPaper: {
-        width: drawerWidth,
-      },
-      drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-start',
-      },
-      content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginRight: -drawerWidth,
-      },
-      contentShift: {
-        transition: theme.transitions.create('margin', {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginRight: 0,
-      },
+  paper: {
+    marginTop: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(2),
+  },
+  formMulti: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(2),
+    border: '5px'
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: drawerWidth,
+  },
+  title: {
+    flexGrow: 1,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-start',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginRight: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginRight: 0,
+  },
 }));
 
 const currencies = [
-    {
-        value: 'USD',
-        label: 'Comedia',
-    },
-    {
-        value: 'EUR',
-        label: 'Suspense',
-    },
-    {
-        value: 'BTC',
-        label: 'Ficcão',
-    },
-    {
-        value: 'BTC',
-        label: 'Terror',
-    },
-    {
-        value: 'BTC',
-        label: 'Romance',
-    },
-    {
-        value: 'BTC',
-        label: 'acao',
-    },
+  {
+    value: 'CM',
+    label: 'Comedia',
+  },
+  {
+    value: 'SP',
+    label: 'Suspense',
+  },
+  {
+    value: 'FC',
+    label: 'Ficcão',
+  },
+  {
+    value: 'TR',
+    label: 'Terror',
+  },
+  {
+    value: 'RC',
+    label: 'Romance',
+  },
+  {
+    value: 'AC',
+    label: 'acao',
+  },
 
 ];
 
-export default function SignIn() {
-    const classes = useStyles();
-    const theme = useTheme();
-    const [value, setValue] = React.useState('');
-    const [open, setOpen] = React.useState(false);
-    const [currency, setCurrency] = React.useState('EUR');
+export default function CriarLivros() {
 
-    const handleChangeMulti = event => {
-        setValue(event.target.value);
-    };
+  const classes = useStyles();
+  const theme = useTheme();
+  const [name, setName] = React.useState('O grito');
+  const [date, setDate] = React.useState('2020-06-02');
+  //
+  const [value, setValue] = React.useState('TR');
+  const [sinopse, setSinopse] = React.useState('');
+  const [open, setOpen] = React.useState(false);
 
-    const handleChange = event => {
-        setCurrency(event.target.value);
-    };
+  
+  const handleChangeName = event => {
+    setName(event.target.name);
+  }
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
+  const handleChangeDate = event => {
+    setDate(event.target.date);
+  }
 
-    const handleDrawerClose = () => {
+  const handleChangeCategoria = event => {
+    setValue(event.target.value);
+  };
+
+  const handleChangeSinopse = event => {
+    setSinopse(event.target.sinopse);
+  };
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
     setOpen(false);
-    };
+  };
 
 
-    const handleClick = () => {
-        
-    }
-    
+  const handleClick = event => {
+    console.log(name)
+  }
 
-    return (
-        <div className={classes.root}>
+
+  return (
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -207,73 +208,75 @@ export default function SignIn() {
       >
         <div className={classes.drawerHeader} />
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Typography component="h1" variant="h5">
-                    Cadastre seu livro
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5">
+              Cadastre seu livro
                 </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="nome"
-                        label="Nome do Livro"
-                        name="email"
-                        autoComplete="nome"
-                        autoFocus
-                    />
-                    <form className={classes.container} noValidate>
-                        <TextField
-                            id="datetime-local"
-                            label="Data de Criação"
-                            type="datetime"
-                            defaultValue="2017-05-24"
-                            className={classes.form}
-                            InputLabelProps={{
-                            shrink: true,
-                            }}                            
-                        />
-                    </form>
-                    <TextField
-                        id="standard-select-currency"
-                        select
-                        label="Categoria"
-                        value={currency}
-                        onChange={handleChange}
-                        helperText="Por favor selecione a categoria"
-                        autoFocus
-                        className={classes.form}
-                    >
-                        {currencies.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+            <form className={classes.form} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Nome do Livro"
+                autoComplete="name"
+                autoFocus
+                onChange={event => {
+                  setName(event.target.name);
+                }}
+              />
+              <form className={classes.container} noValidate>
+                <TextField
+                  id="date"
+                  label="Data de Criação"
+                  type="datetime"
+                  className={classes.form}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  onChange={handleChangeDate}
+                />
+              </form>
+              <TextField
+                id="standard-select-currency"
+                select
+                label="Categoria"
+                value={value}
+                onChange={handleChangeCategoria}
+                helperText="Por favor selecione a categoria"
+                autoFocus
+                className={classes.form}
+              >
+                {currencies.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
 
-                    <TextField
-                        id="standard-multiline-static"
-                        label="Sinopse"
-                        multiline
-                        rows="2"
-                        className={classes.formMulti}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={handleClick}
-                    >
-                        Cadastrar
-                    </Button>
-                </form>
-            </div>
+              <TextField
+                id="standard-multiline-static"
+                label="Sinopse"
+                multiline
+                rows="2"
+                className={classes.formMulti}
+                onChange={handleChangeSinopse}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleClick}
+              >
+                Cadastrar
+              </Button>
+            </form>
+          </div>
         </Container>
-
       </main>
       <Drawer
         className={classes.drawer}
@@ -301,6 +304,7 @@ export default function SignIn() {
           ))}
         </List>
       </Drawer>
-    </div>        
-    );
+    </div>
+  );
 }
+

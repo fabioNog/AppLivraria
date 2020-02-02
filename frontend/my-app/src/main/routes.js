@@ -1,7 +1,7 @@
 
 import React from 'react'
 //React-Router-Dom
-import { BrowserRouter, Route, Switch,Link } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 //Roteamento
 import Home from '../components'
@@ -9,7 +9,7 @@ import App from '../App'
 //Rotas para os Livros
 
 import Livros from '../components/Livros'
-import CriarLivros from '../components/Livros/CriarLivros'
+import CriarLivros from '../components/Livros/CriarTeste'
 import EditarLivros from '../components/Livros/EditarLivros'
 import DeletarLivros from '../components/Livros/DeletarLivros'
 import ListarLivros from '../components/Livros/ListarLivros'
@@ -40,8 +40,21 @@ function AppRouter() {
            
            <Route path="/livros" component={Livros} />
            <Route path="/criarlivros" component={CriarLivros} />
-           <Route exact path="/autores" component={Autores} />
-           <Route exact path="/editoras" component={Editoras} />        
+           <Route path="/editarlivros" component={EditarLivros} />
+           <Route path="/deletarlivros" component={DeletarLivros} />
+           <Route path="/Listarlivros" component={ListarLivros} />
+
+           <Route path="/autores" component={Autores} />
+           <Route path="/criarautores" component={CriarAutores} />
+           <Route path="/editarautores" component={EditarAutores} />
+           <Route path="/deletarautores" component={DeletarAutores} />
+           <Route path="/Listarautores" component={ListarAutores} />
+
+           <Route path="/editoras" component={Editoras} />
+           <Route path="/criareditoras" component={CriarEditoras} />
+           <Route path="/editareditoras" component={EditarEditoras} />
+           <Route path="/deletareditoras" component={DeletarEditoras} />
+           <Route path="/Listareditoras" component={ListarEditoras} />        
          </Switch>
        </div>
      </BrowserRouter>
