@@ -59,7 +59,7 @@
             endfor;
             echo $sql;
 
-            return $this->executeSQL($sql);
+            return $this->executeSQL();
         }//Inserir
         
         //Rotina de Execução dos SQLs
@@ -67,7 +67,9 @@
             if($sql!=NULL):
                 $query = mysqli_query($this->conection,$sql) or 
                 $this->handle_erro(__FILE__,__FUNCTION__);
+                $this->affect_row = mysqli_affected_rows($this->conection);
             else:
+                $this->handle_erro(__FILE__,__FUNCTION__,NULL,"Não Foi possivel encontrar Comando SQL, Tente Novamente",FALSE);
             endif;
         }
 

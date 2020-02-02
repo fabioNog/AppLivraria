@@ -7,7 +7,9 @@
     $livro->setValue('categoria',"acao");
     $livro->setValue('sinopse',"Verdadeiro clássico moderno, concebido por um dos mais influentes escritores do século XX, A revolução dos bichos é uma fábula sobre o poder. Narra a insurreição dos animais de uma granja contra seus donos. Progressivamente, porém, a revolução degenera numa tirania ainda mais opressiva que a dos humanos.");
     $livro->insert($livro);
-    /*echo '<pre>';    
+
+    echo '<pre>';    
     print_r($livro);
-    echo '<pre>';*/
+    echo '<pre>';
+    echo $livro->affect_row. ' Registros incluidos com sucesso';
 ?>
