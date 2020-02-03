@@ -87,7 +87,8 @@
             $sql .= is_numeric($object->value_pk) ? $object->value_pk : "'".$object->value_pk."'";
             return $this->executeSQL($sql);            
         }//Delete
-
+        
+        //Construindo a função SQL Select
         public function selectAll($object){
             $sql = "SELECT * FROM ".$object->table;
             if($object->extra_select != NULL):
@@ -95,6 +96,25 @@
             endif;
             return $this->executeSQL($sql);
         }//Select all fields in the my table
+
+        //Construindo a função SQL Select por Campos
+        public function selectFields($object){
+            $sql = "SELECT  ";
+            for($i=0;$i<count($object->fields_value); $i++) :
+                $sql .= key($object->fields_value);
+                if($i < (count($object->fields_value) - 1)):
+                    $sql .= ",";
+                else:
+                    $sql .= " ";
+                endif;
+                next($object->fields_value);
+            endfor;            
+            $sql .= " FROM ".$object->table;
+            if($object->extra_select != NULL):
+                $sql .=" ".$object->extra_select;
+            endif;
+            return $this->executeSQL($sql);
+        }//Select any fields in the my table
         
         //Rotina de Execução dos SQLs
         public function executeSQL($sql=NULL){

@@ -11,10 +11,10 @@
     
     //$livro->delete($livro);
 
-    $livro->selectAll($livro);
+    $livro->selectFields($livro);
 
     while($res = $livro->returnDates()):
-        echo $res->id_autor.' : ' .$res->nome_livro.' : ' .$res->ano_criacao.' : ' .$res->categoria.' : ' .$res->sinopse. "<br/>" ;
+        echo $res->nome_livro.' : ' .$res->ano_criacao.' : ' .$res->categoria.' : ' .$res->sinopse. "<br/>" ;
     endwhile;
 
     echo '<pre>';    
