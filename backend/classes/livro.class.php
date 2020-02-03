@@ -15,6 +15,7 @@ class livro extends base{
         else:
             $this->fields_value = $field;
         endif;
+        $this->field_pk ="id_autor";
     }
 }
 ?>

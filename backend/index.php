@@ -2,11 +2,14 @@
     include("./classes/livro.class.php");
     $livro = new livro();
 
-    $livro->setValue('nome_livro',"A Revolucao dos bichos:Um conto de fadas");
-    $livro->setValue('ano_criacao',"1945-07-01");
+    $livro->setValue('nome_livro',"1984");
+    $livro->setValue('ano_criacao',"1945-08-01");
     $livro->setValue('categoria',"acao");
-    $livro->setValue('sinopse',"Verdadeiro clássico moderno, concebido por um dos mais influentes escritores do século XX, A revolução dos bichos é uma fábula sobre o poder. Narra a insurreição dos animais de uma granja contra seus donos. Progressivamente, porém, a revolução degenera numa tirania ainda mais opressiva que a dos humanos.");
-    $livro->insert($livro);
+    $livro->setValue('sinopse',"Verdadeiro clássico moderno, concebido por um dos mais influentes escritores do século XX, 1984 é uma fábula sobre o poder. Narra a vitoria da classe operaria.");
+    $livro->value_pk = 2;
+    
+    
+    $livro->update($livro);
 
     echo '<pre>';    
     print_r($livro);
