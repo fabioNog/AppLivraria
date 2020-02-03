@@ -85,9 +85,16 @@
             $sql = "DELETE FROM ".$object->table;
             $sql .= " WHERE ".$object->field_pk."=";
             $sql .= is_numeric($object->value_pk) ? $object->value_pk : "'".$object->value_pk."'";
-            return $this->executeSQL($sql);
-            echo $sql;
+            return $this->executeSQL($sql);            
         }//Delete
+
+        public function selectAll($object){
+            $sql = "SELECT * FROM ".$object->table;
+            if($object->extra_select != NULL):
+                $sql .=" ".$object->extra_select;
+            endif;
+            return $this->executeSQL($sql);
+        }//Select all fields in the my table
         
         //Rotina de Execução dos SQLs
         public function executeSQL($sql=NULL){
@@ -95,10 +102,37 @@
                 $query = mysqli_query($this->conection,$sql) or 
                 $this->handle_erro(__FILE__,__FUNCTION__);
                 $this->affect_row = mysqli_affected_rows($this->conection);
+                //Verificação: Interpolando rotina pra executar meu select
+                //Sabendo qual query estou executando
+                if(substr(trim(strtolower($sql)),0,6) == 'select'):
+                    $this->dataset  = $query;
+                    return $this->dataset;
+                else:
+                    return $this->affect_row;
+                endif;
+
             else:
                 $this->handle_erro(__FILE__,__FUNCTION__,NULL,"Não Foi possivel encontrar Comando SQL, Tente Novamente",FALSE);
             endif;
-        }
+        }//Execute 
+
+        public function returnDates($type=NULL){
+            switch (strtolower($type)):
+                case "array":
+                    return mysqli_fetch_array($this->dataset);
+                break;
+                case "assoc":
+                    return mysqli_fetch_assoc($this->dataset);
+                break;
+                case "object":
+                    return mysqli_fetch_object($this->dataset);
+                break;
+                default:
+                    return mysqli_fetch_object($this->dataset);
+                break;
+            endswitch;
+
+        }//Return Date
 
         //Rotina para tratamento de erros
         public function handle_erro($file=NULL,$routine=NULL,$number_erro=NULL,$msg_erro=NULL,$generation_except=FALSE){
