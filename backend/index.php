@@ -9,7 +9,7 @@
     $livro->value_pk = 2;
     
     
-    $livro->update($livro);
+    $livro->delete($livro);
 
     echo '<pre>';    
     print_r($livro);

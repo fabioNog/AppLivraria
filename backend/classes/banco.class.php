@@ -57,9 +57,7 @@
                 endif;
                 next($object->fields_value);
             endfor;
-            echo $sql;
-
-            //return $this->executeSQL();
+            return $this->executeSQL($sql);
         }//Inserir
 
         //Construindo a função SQL Update
@@ -79,11 +77,17 @@
             endfor;
             $sql .= "WHERE ".$object->field_pk."=";
             $sql .= is_numeric($object->value_pk) ? $object->value_pk : "'".$object->value_pk."'";
-            echo $sql;
-
             return $this->executeSQL($sql);
-        }//Inserir
+        }//Update
 
+        //Construindo a função SQL Delete
+        public function delete($object){
+            $sql = "DELETE FROM ".$object->table;
+            $sql .= " WHERE ".$object->field_pk."=";
+            $sql .= is_numeric($object->value_pk) ? $object->value_pk : "'".$object->value_pk."'";
+            return $this->executeSQL($sql);
+            echo $sql;
+        }//Delete
         
         //Rotina de Execução dos SQLs
         public function executeSQL($sql=NULL){
