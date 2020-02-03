@@ -4,7 +4,7 @@ abstract class base extends banco{
     //Propriedades da classe base
     public $table = "";
     public $fields_value =  array();
-    public $fields_pk = NULL;
+    public $field_pk = NULL;
     public $value_pk = NULL;
     
     public $extra_select = "";//Caso eu nescessite de manipular algum order by, inner join etc..
