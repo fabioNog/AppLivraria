@@ -7,34 +7,34 @@ import Container from '@material-ui/core/Container';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios'
 
-const currencies = [
+/*const currencies = [
   {
-    value: 'CM',
+    value: 'Comedia',
     label: 'Comedia',
   },
   {
-    value: 'SP',
+    value: 'Suspense',
     label: 'Suspense',
   },
   {
-    value: 'FC',
-    label: 'Ficção',
+    value: 'Ficcao',
+    label: 'Ficcao',
   },
   {
-    value: 'TR',
+    value: 'Terror',
     label: 'Terror',
   },
   {
-    value: 'RM',
+    value: 'Romance',
     label: 'Romance',
   },
   {
-    value: 'PC',
+    value: 'Policial',
     label: 'Policial',
   },
   {
-    value: 'AC',
-    label: 'Ação',
+    value: 'Acao',
+    label: 'Acao',
   },
 ];
 
@@ -49,15 +49,53 @@ class Criar extends Component{
       sinopse: '',
     }
     this.handleChangeName = this.handleChangeName.bind(this)
+    this.handleChangeData = this.handleChangeData.bind(this)
+    this.handleChangeCategoria = this.handleChangeCategoria.bind(this)
+    this.handleChangeSinopse = this.handleChangeSinopse.bind(this)
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleChangeName(e){
+    this.setState({nome: e.target.value})
+  }
+
+  handleChangeData(e){
+    this.setState({data: e.target.value})
+  }
+
+  handleChangeCategoria(e){
+    this.setState({categoria: e.target.value})
+  }
+
+  handleChangeSinopse(e){
+    this.setState({sinopse: e.target.value})
   }
 
   handleChangeName(e){
     this.setState({name: e.target.value})
   }
-
+  
+  
   handleClick(){
-    console.log(this.state.name)
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://localhost/livraria/backend/"; 
+    axios.post('proxyurl + url',{
+      nome_livro: 'A mão que cura',
+      ano_criacao: '2010-12-31',
+      categoria: 'suspense',
+      sinopse: 'A mão que cura conta a historia de uma mão que cura'
+    },config)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render(){
@@ -91,12 +129,15 @@ class Criar extends Component{
           />
           <TextField
             id="outlined-select-currency"
+            name={this.state.categoria}
             select
             label="Categoria"
             helperText="Selecione a categoria"
             variant="outlined"
             fullWidth
             style={{marginTop: '10px'}}
+            defaultValue = {"Comedia"}
+            onChange={this.handleChangeCategoria}
           >
             {currencies.map(option => (
               <MenuItem key={option.value} value={option.value}>
@@ -129,7 +170,26 @@ class Criar extends Component{
     </Container>      
     )
   }
+}*/
+
+function Teste(){
+const [vet, setVet] = useState([])
+  useEffect(() =>{
+    axios({
+      method: 'GET',
+      url: 'https://jsonplaceholder.typicode.com/posts'
+    }).then(res => {
+      setVet(res.data)
+    })
+  })  
+  return(
+    <div>
+      {vet.map((v) => (
+        <div id={v.userId}>{v.title}</div>
+      ))}
+    </div>
+  )
 }
 
-export default Criar
+export default Teste
 
